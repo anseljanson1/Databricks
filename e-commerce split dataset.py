@@ -6,7 +6,7 @@ print('spark session created.')
 
 # COMMAND ----------
 
-df = spark.sql('SELECT * FROM data_1_csv')
+df = spark.sql('SELECT * FROM hive_metastore.default.data_ecomm')
 display(df)
 
 # COMMAND ----------
@@ -36,7 +36,7 @@ f"n_row={df_invoice.count()}, n_col={len(df_invoice.columns)}"
 # COMMAND ----------
 
 # Create table with path using DataFrame's schema and raise error if exist
-df_invoice.write.format("delta").saveAsTable("default.invoices")
+df_invoice.write.format("delta").saveAsTable("hive_metastore.default.invoices")
 
 # COMMAND ----------
 
@@ -51,7 +51,7 @@ display(df_items)
 
 # COMMAND ----------
 
-df_items.write.format("delta").saveAsTable("default.items")
+df_items.write.format("delta").saveAsTable("hive_metastore.default.items")
 
 # COMMAND ----------
 
